@@ -28,7 +28,8 @@ define([
     defaultValidator,
     $t,
     uiRegistry,
-    formPopUpState
+    formPopUpState,
+    quote
 ) {
     'use strict';
 
@@ -195,7 +196,7 @@ define([
                 address;
 
             if (this.validateAddressData(addressFlat)) {
-                addressFlat = uiRegistry.get('checkoutProvider').shippingAddress;
+                addressFlat = quote.shippingAddress();
                 address = addressConverter.formAddressDataToQuoteAddress(addressFlat);
                 selectShippingAddress(address);
             }
