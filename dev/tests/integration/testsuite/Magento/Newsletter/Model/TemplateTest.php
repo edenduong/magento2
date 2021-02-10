@@ -5,7 +5,7 @@
  */
 namespace Magento\Newsletter\Model;
 
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 use Magento\Store\Model\ScopeInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 
@@ -144,7 +144,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
     {
         $objectManager = Bootstrap::getObjectManager();
 
-        $this->_model->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $this->_model->setTemplateType(Queue::TYPE_HTML);
         $templateText = '{{var store.isSaveAllowed()}} - {{template config_path="foobar"}}';
         $this->_model->setTemplateText($templateText);
         $this->_model->setTemplateId('abc');
@@ -153,7 +153,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $templateData = [
             'is_legacy' => '1',
             'template_code' => 'some_unique_code',
-            'template_type' => TemplateTypesInterface::TYPE_HTML,
+            'template_type' => Queue::TYPE_HTML,
             'template_text' => '{{var this.template_code}}'
                 . ' - {{var store.isSaveAllowed()}} - {{var this.getTemplateCode()}}',
         ];
@@ -182,7 +182,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
     {
         $objectManager = Bootstrap::getObjectManager();
 
-        $this->_model->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $this->_model->setTemplateType(Queue::TYPE_HTML);
         $templateText = '{{var store.isSaveAllowed()}} - {{template config_path="foobar"}}';
         $this->_model->setTemplateText($templateText);
         $this->_model->setTemplateId('abc');
@@ -190,7 +190,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $template = $objectManager->create(\Magento\Email\Model\Template::class);
         $templateData = [
             'template_code' => 'some_unique_code',
-            'template_type' => TemplateTypesInterface::TYPE_HTML,
+            'template_type' => Queue::TYPE_HTML,
             'template_text' => '{{var this.template_code}}'
                 . ' - {{var store.isSaveAllowed()}} - {{var this.getTemplateCode()}}',
         ];

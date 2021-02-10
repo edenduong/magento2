@@ -6,7 +6,7 @@
 namespace Magento\Email\Block\Adminhtml\Template\Edit;
 
 use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 
 /**
  * Test class for \Magento\Email\Block\Adminhtml\Template\Edit\Form
@@ -47,7 +47,7 @@ class FormTest extends \PHPUnit\Framework\TestCase
         $this->objectManager = Bootstrap::getObjectManager();
         $this->template = $this->objectManager->get(\Magento\Email\Model\Template::class)
             ->setId(1)
-            ->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+            ->setTemplateType(AbstractTemplate::TYPE_HTML);
 
         $this->block = $this->objectManager->create(
             \Magento\Email\Block\Adminhtml\Template\Edit\Form::class,

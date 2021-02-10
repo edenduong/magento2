@@ -15,7 +15,7 @@ use Magento\Email\Model\TemplateFactory;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 use Magento\Framework\DataObject;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\ReadInterface;
@@ -311,9 +311,9 @@ class TemplateTest extends TestCase
         $model->loadDefault($templateId);
 
         if ($templateType === 'html') {
-            $this->assertEquals(TemplateTypesInterface::TYPE_HTML, $model->getTemplateType());
+            $this->assertEquals(AbstractTemplate::TYPE_HTML, $model->getTemplateType());
         } else {
-            $this->assertEquals(TemplateTypesInterface::TYPE_TEXT, $model->getTemplateType());
+            $this->assertEquals(AbstractTemplate::TYPE_TEXT, $model->getTemplateType());
         }
         $this->assertEquals($templateId, $model->getId());
         $this->assertEquals($parsedTemplateText, $model->getTemplateText());

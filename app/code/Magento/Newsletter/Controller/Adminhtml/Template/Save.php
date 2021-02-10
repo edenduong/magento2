@@ -6,7 +6,7 @@
 namespace Magento\Newsletter\Controller\Adminhtml\Template;
 
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
@@ -51,10 +51,10 @@ class Save extends \Magento\Newsletter\Controller\Adminhtml\Template implements 
             );
 
             if (!$template->getId()) {
-                $template->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+                $template->setTemplateType(Queue::TYPE_HTML);
             }
             if ($this->getRequest()->getParam('_change_type_flag')) {
-                $template->setTemplateType(TemplateTypesInterface::TYPE_TEXT);
+                $template->setTemplateType(Queue::TYPE_TEXT);
                 $template->setTemplateStyles('');
             }
             if ($this->getRequest()->getParam('_save_as_flag')) {

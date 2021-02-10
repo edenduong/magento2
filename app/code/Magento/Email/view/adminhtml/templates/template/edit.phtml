@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 
 // phpcs:disable Generic.Files.LineLength.TooLong
 
@@ -69,7 +69,7 @@ use Magento\Framework\App\TemplateTypesInterface;
 <?php
 $currentlyUsedForPaths = /* @noEscape */ $block->getCurrentlyUsedForPaths();
 $templateType = (int)$block->getTemplateType();
-$typeText = /* @noEscape */ TemplateTypesInterface::TYPE_TEXT;
+$typeText = /* @noEscape */ AbstractTemplate::TYPE_TEXT;
 $scriptString = <<<script
 
 require([

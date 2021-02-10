@@ -5,7 +5,6 @@
  */
 namespace Magento\Newsletter\Model;
 
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Framework\Stdlib\DateTime\Timezone\LocalizedDateToUtcConverterInterface;
 
@@ -38,7 +37,7 @@ use Magento\Framework\Stdlib\DateTime\Timezone\LocalizedDateToUtcConverterInterf
  * @api
  * @since 100.0.2
  */
-class Queue extends \Magento\Framework\Model\AbstractModel implements TemplateTypesInterface
+class Queue extends \Magento\Framework\Model\AbstractModel
 {
     /**
      * Newsletter Template object
@@ -77,6 +76,13 @@ class Queue extends \Magento\Framework\Model\AbstractModel implements TemplateTy
     const STATUS_SENT = 3;
 
     const STATUS_PAUSE = 4;
+
+    /**
+     * Types of template
+     */
+    const TYPE_TEXT = 1;
+
+    const TYPE_HTML = 2;
 
     /**
      * Filter for newsletter text

@@ -7,7 +7,6 @@
 namespace Magento\Email\Model;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Model\AbstractModel;
@@ -26,8 +25,15 @@ use Magento\MediaStorage\Helper\File\Storage\Database;
  * @api
  * @since 100.0.2
  */
-abstract class AbstractTemplate extends AbstractModel implements TemplateTypesInterface
+abstract class AbstractTemplate extends AbstractModel
 {
+    /**
+     * Types of template
+     */
+    const TYPE_TEXT = 1;
+
+    const TYPE_HTML = 2;
+
     /**
      * Default design area for emulation
      */

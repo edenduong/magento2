@@ -9,7 +9,7 @@ use Magento\Backend\App\Area\FrontNameResolver as BackendFrontNameResolver;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\ObjectManager;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 use Magento\Framework\View\DesignInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\Store;
@@ -288,26 +288,26 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         return [
             'Template from module folder - adminhtml' => [
                 BackendFrontNameResolver::AREA_CODE,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="design/email/footer_template"}}',
                 "</table>\n<!-- End wrapper table -->",
             ],
             'Template from module folder - frontend' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="design/email/footer_template"}}',
                 "</table>\n<!-- End wrapper table -->",
             ],
             'Template from module folder - plaintext' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_TEXT,
+                AbstractTemplate::TYPE_TEXT,
                 '{{template config_path="design/email/footer_template"}}',
                 'Thank you',
                 "</table>\n<!-- End wrapper table -->",
             ],
             'Template overridden in backend - adminhtml' => [
                 BackendFrontNameResolver::AREA_CODE,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="design/email/footer_template"}}',
                 '<b>Footer configured in backend - email loaded via adminhtml</b>',
                 null,
@@ -315,7 +315,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
             ],
             'Template overridden in backend - frontend' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="design/email/footer_template"}}',
                 '<b>Footer configured in backend - email loaded via frontend</b>',
                 null,
@@ -323,25 +323,25 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
             ],
             'Template from theme - frontend' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="customer/create_account/email_template"}}',
                 '<strong>customer_create_account_email_template template from Vendor/custom_theme</strong>',
             ],
             'Template from parent theme - frontend' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="customer/create_account/email_confirmation_template"}}',
                 '<strong>customer_create_account_email_confirmation_template template from Vendor/default</strong',
             ],
             'Template from grandparent theme - frontend' => [
                 Area::AREA_FRONTEND,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="customer/create_account/email_confirmed_template"}}',
                 '<strong>customer_create_account_email_confirmed_template template from Magento/default</strong',
             ],
             'Template from grandparent theme - adminhtml' => [
                 BackendFrontNameResolver::AREA_CODE,
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '{{template config_path="catalog/productalert_cron/error_email_template"}}',
                 '<strong>catalog_productalert_cron_error_email_template template from Magento/default</strong',
                 null,
@@ -363,7 +363,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 
         $this->setUpThemeFallback(BackendFrontNameResolver::AREA_CODE);
 
-        $this->model->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $this->model->setTemplateType(AbstractTemplate::TYPE_HTML);
         // The first variable should be processed because it didn't come from the DB
         $template = '{{var store.isSaveAllowed()}} - {{template config_path="design/email/footer_template"}}';
         $this->model->setTemplateText($template);
@@ -372,7 +372,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $template = $this->objectManager->create(\Magento\Email\Model\Template::class);
         $templateData = [
             'template_code' => 'some_unique_code',
-            'template_type' => TemplateTypesInterface::TYPE_HTML,
+            'template_type' => AbstractTemplate::TYPE_HTML,
             // This template will be processed in strict mode
             'template_text' => '{{var this.template_code}}'
                 . ' - {{var store.isSaveAllowed()}} - {{var this.getTemplateCode()}}',
@@ -399,7 +399,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 
         $this->setUpThemeFallback(BackendFrontNameResolver::AREA_CODE);
 
-        $this->model->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $this->model->setTemplateType(AbstractTemplate::TYPE_HTML);
         $template = '{{var store.isSaveAllowed()}} - {{template config_path="design/email/footer_template"}}';
         $this->model->setTemplateText($template);
 
@@ -407,7 +407,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $templateData = [
             'is_legacy' => '1',
             'template_code' => 'some_unique_code',
-            'template_type' => TemplateTypesInterface::TYPE_HTML,
+            'template_type' => AbstractTemplate::TYPE_HTML,
             'template_text' => '{{var this.template_code}}'
                 . ' - {{var store.isSaveAllowed()}} - {{var this.getTemplateCode()}}',
         ];
@@ -433,7 +433,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
 
         $this->setUpThemeFallback(BackendFrontNameResolver::AREA_CODE);
 
-        $this->model->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $this->model->setTemplateType(AbstractTemplate::TYPE_HTML);
         $template = '{{var store.isSaveAllowed()}} - {{template config_path="design/email/footer_template"}}';
         $this->model->setTemplateText($template);
 
@@ -441,7 +441,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
         $templateData = [
             'is_legacy' => '0',
             'template_code' => 'some_unique_code',
-            'template_type' => TemplateTypesInterface::TYPE_HTML,
+            'template_type' => AbstractTemplate::TYPE_HTML,
             'template_text' => '{{var this.template_code}}'
                 . ' - {{var store.isSaveAllowed()}} - {{var this.getTemplateCode()}}',
         ];
@@ -792,7 +792,7 @@ class TemplateTest extends \PHPUnit\Framework\TestCase
     {
         $this->mockModel();
         $this->model->setId('customer_create_account_email_template');
-        $this->assertEquals(TemplateTypesInterface::TYPE_HTML, $this->model->getType());
+        $this->assertEquals(AbstractTemplate::TYPE_HTML, $this->model->getType());
     }
 
     public function testGetType()

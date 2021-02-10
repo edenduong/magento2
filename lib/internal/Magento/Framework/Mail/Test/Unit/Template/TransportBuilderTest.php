@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Magento\Framework\Mail\Test\Unit\Template;
 
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Mail\EmailMessageInterface;
 use Magento\Framework\Mail\EmailMessageInterfaceFactory;
 use Magento\Framework\Mail\Message;
@@ -204,12 +203,12 @@ class TransportBuilderTest extends TestCase
     {
         return [
             [
-                TemplateTypesInterface::TYPE_TEXT,
+                TemplateInterface::TYPE_TEXT,
                 'Plain text',
                 null
             ],
             [
-                TemplateTypesInterface::TYPE_HTML,
+                TemplateInterface::TYPE_HTML,
                 '<h1>Html message</h1>',
                 'Test\Namespace\Template'
             ]

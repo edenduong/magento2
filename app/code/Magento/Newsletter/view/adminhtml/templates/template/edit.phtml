@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 
 /* @var $block \Magento\Newsletter\Block\Adminhtml\Template\Edit */
 /** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
@@ -177,7 +177,7 @@ require([
 
         preview: function () {
             if (this.typeChange) {
-                $('preview_type').value = {$block->escapeJs(TemplateTypesInterface::TYPE_TEXT)};
+                $('preview_type').value = {$block->escapeJs(Queue::TYPE_TEXT)};
             } else {
                 $('preview_type').value = {$block->escapeJs($block->getTemplateType())};
             }

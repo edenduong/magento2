@@ -12,7 +12,7 @@
 namespace Magento\Newsletter\Block\Adminhtml\Template;
 
 use Magento\Backend\Block\Widget\Grid as WidgetGrid;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 
 class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
@@ -128,8 +128,8 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
                 'index' => 'template_type',
                 'type' => 'options',
                 'options' => [
-                    TemplateTypesInterface::TYPE_HTML => 'html',
-                    TemplateTypesInterface::TYPE_TEXT => 'text',
+                    Queue::TYPE_HTML => 'html',
+                    Queue::TYPE_TEXT => 'text',
                 ],
                 'header_css_class' => 'col-type',
                 'column_css_class' => 'col-type'

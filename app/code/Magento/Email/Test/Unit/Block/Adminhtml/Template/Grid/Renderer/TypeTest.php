@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace Magento\Email\Test\Unit\Block\Adminhtml\Template\Grid\Renderer;
 
 use Magento\Email\Block\Adminhtml\Template\Grid\Renderer\Type;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 use Magento\Framework\DataObject;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use PHPUnit\Framework\TestCase;
@@ -35,7 +35,7 @@ class TypeTest extends TestCase
     public function testRenderHtml()
     {
         $row = new DataObject();
-        $row->setTemplateType(TemplateTypesInterface::TYPE_HTML);
+        $row->setTemplateType(AbstractTemplate::TYPE_HTML);
         $this->assertEquals('HTML', $this->type->render($row));
     }
 
@@ -45,7 +45,7 @@ class TypeTest extends TestCase
     public function testRenderText()
     {
         $row = new DataObject();
-        $row->setTemplateType(TemplateTypesInterface::TYPE_TEXT);
+        $row->setTemplateType(AbstractTemplate::TYPE_TEXT);
         $this->assertEquals('Text', $this->type->render($row));
     }
 

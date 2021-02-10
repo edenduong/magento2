@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Magento\Framework\Mail\Template;
 
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\AddressConverter;
@@ -380,11 +379,11 @@ class TransportBuilder
         $content = $template->processTemplate();
 
         switch ($template->getType()) {
-            case TemplateTypesInterface::TYPE_TEXT:
+            case TemplateInterface::TYPE_TEXT:
                 $partType = MimeInterface::TYPE_TEXT;
                 break;
 
-            case TemplateTypesInterface::TYPE_HTML:
+            case TemplateInterface::TYPE_HTML:
                 $partType = MimeInterface::TYPE_HTML;
                 break;
 

@@ -7,7 +7,7 @@ namespace Magento\Email\Model\Template;
 
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Email\Model\AbstractTemplate;
 use Magento\Framework\Phrase;
 use Magento\Framework\View\Asset\ContentProcessorInterface;
 use Magento\Setup\Module\I18n\Locale;
@@ -285,7 +285,7 @@ class FilterTest extends \PHPUnit\Framework\TestCase
         $registration->register();
         $this->setUpDesignParams();
         $this->model->setStoreId('fixturestore')
-            ->setPlainTemplateMode($templateType == TemplateTypesInterface::TYPE_TEXT);
+            ->setPlainTemplateMode($templateType == AbstractTemplate::TYPE_TEXT);
 
         $output = $this->model->cssDirective(['{{css ' . $directiveParams . '}}', 'css', ' ' . $directiveParams]);
 
@@ -303,37 +303,37 @@ class FilterTest extends \PHPUnit\Framework\TestCase
     {
         return [
             'CSS from theme' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 'file="css/email-1.css"',
                 'color: #111'
             ],
             'CSS from parent theme' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 'file="css/email-2.css"',
                 'color: #222'
             ],
             'CSS from grandparent theme' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 'file="css/email-3.css"',
                 'color: #333'
             ],
             'Missing file parameter' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 '',
                 '/* "file" parameter must be specified */'
             ],
             'Plain-text template outputs nothing' => [
-                TemplateTypesInterface::TYPE_TEXT,
+                AbstractTemplate::TYPE_TEXT,
                 'file="css/email-1.css"',
                 '',
             ],
             'Empty or missing file' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 'file="css/non-existent-file.css"',
                 '/*' . PHP_EOL . ContentProcessorInterface::ERROR_MESSAGE_PREFIX . 'LESS file is empty: ',
             ],
             'File with compilation error results in error message' => [
-                TemplateTypesInterface::TYPE_HTML,
+                AbstractTemplate::TYPE_HTML,
                 'file="css/file-with-error.css"',
                 'variable @non-existent-variable is undefined',
             ],

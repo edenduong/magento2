@@ -5,6 +5,8 @@
  */
 namespace Magento\Email\Block\Adminhtml\Template\Grid\Filter;
 
+use Magento\Email\Model\AbstractTemplate;
+
 /**
  * Adminhtml system template grid type filter
  *
@@ -19,8 +21,8 @@ class Type extends \Magento\Backend\Block\Widget\Grid\Column\Filter\Select
      */
     protected static $_types = [
         null => null,
-        \Magento\Framework\App\TemplateTypesInterface::TYPE_HTML => 'HTML',
-        \Magento\Framework\App\TemplateTypesInterface::TYPE_TEXT => 'Text',
+        AbstractTemplate::TYPE_HTML => 'HTML',
+        AbstractTemplate::TYPE_TEXT => 'Text',
     ];
 
     /**

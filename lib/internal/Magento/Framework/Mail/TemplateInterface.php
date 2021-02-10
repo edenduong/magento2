@@ -11,8 +11,15 @@ namespace Magento\Framework\Mail;
  * @api
  * @since 100.0.2
  */
-interface TemplateInterface extends \Magento\Framework\App\TemplateTypesInterface
+interface TemplateInterface
 {
+    /**
+     * Types of template
+     */
+    const TYPE_TEXT = 1;
+
+    const TYPE_HTML = 2;
+
     /**
      * Get processed template
      *
@@ -42,4 +49,18 @@ interface TemplateInterface extends \Magento\Framework\App\TemplateTypesInterfac
      * @return $this
      */
     public function setOptions(array $options);
+
+    /**
+     * Return true if template type eq text
+     *
+     * @return boolean
+     */
+    public function isPlain();
+
+    /**
+     * Getter for template type
+     *
+     * @return int
+     */
+    public function getType();
 }

@@ -10,7 +10,7 @@ namespace Magento\Newsletter\Test\Unit\Model\Queue;
 
 use Magento\Email\Model\Template;
 use Magento\Email\Model\Template\Filter;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Mail\EmailMessageInterface;
 use Magento\Framework\Mail\EmailMessageInterfaceFactory;
@@ -130,7 +130,7 @@ class TransportBuilderTest extends TestCase
      * @throws LocalizedException
      */
     public function testGetTransport(
-        $templateType = TemplateTypesInterface::TYPE_HTML,
+        $templateType = Queue::TYPE_HTML,
         $bodyText = '<h1>Html message</h1>'
     ): void {
         $filter = $this->createMock(Filter::class);

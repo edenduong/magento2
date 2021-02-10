@@ -12,7 +12,7 @@
 namespace Magento\Newsletter\Block\Adminhtml\Template;
 
 use Magento\Backend\Block\Widget;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 
 /**
  * @api
@@ -259,7 +259,7 @@ class Edit extends Widget
         if ($this->getModel()->getTemplateType()) {
             return $this->getModel()->getTemplateType();
         }
-        return TemplateTypesInterface::TYPE_HTML;
+        return Queue::TYPE_HTML;
     }
 
     /**

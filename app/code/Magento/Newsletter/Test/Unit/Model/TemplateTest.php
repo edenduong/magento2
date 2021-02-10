@@ -12,7 +12,7 @@ use Magento\Email\Model\TemplateFactory;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filter\FilterManager;
 use Magento\Framework\Filter\Template;
@@ -298,7 +298,7 @@ class TemplateTest extends TestCase
             ->with(false)->willReturnSelf();
         $filterTemplate->expects($this->once())
             ->method('setPlainTemplateMode')
-            ->with($templateType === TemplateTypesInterface::TYPE_TEXT)->willReturnSelf();
+            ->with($templateType === Queue::TYPE_TEXT)->willReturnSelf();
         $filterTemplate->expects($this->once())
             ->method('setIsChildTemplate')->willReturnSelf();
         $filterTemplate->expects($this->once())
@@ -353,7 +353,7 @@ class TemplateTest extends TestCase
 
         $model->expects($this->atLeastOnce())
             ->method('isPlain')
-            ->willReturn($templateType === TemplateTypesInterface::TYPE_TEXT);
+            ->willReturn($templateType === Queue::TYPE_TEXT);
 
         $preparedTemplateText = $expectedResult; //'prepared text';
         $model->expects($this->once())
@@ -376,7 +376,7 @@ class TemplateTest extends TestCase
         return [
             'default' => [
                 'variables' => [],
-                'templateType' => TemplateTypesInterface::TYPE_TEXT,
+                'templateType' => Queue::TYPE_TEXT,
                 'storeId' => 1,
                 'expectedVariables' => [
                     'logo_url' => null,
@@ -395,7 +395,7 @@ class TemplateTest extends TestCase
                     'logo_url' => 'http://example.com/logo',
                     'logo_alt' => 'Logo Alt',
                 ],
-                'templateType' => TemplateTypesInterface::TYPE_HTML,
+                'templateType' => Queue::TYPE_HTML,
                 'storeId' => 1,
                 'expectedVariables' => [
                     'logo_url' => 'http://example.com/logo',

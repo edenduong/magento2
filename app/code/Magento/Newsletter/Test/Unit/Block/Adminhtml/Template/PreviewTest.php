@@ -9,7 +9,7 @@ namespace Magento\Newsletter\Test\Unit\Block\Adminhtml\Template;
 
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\State;
-use Magento\Framework\App\TemplateTypesInterface;
+use Magento\Newsletter\Model\Queue;
 use Magento\Framework\Escaper;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use Magento\Newsletter\Block\Adminhtml\Template\Preview;
@@ -111,13 +111,13 @@ class PreviewTest extends TestCase
     {
         $this->requestMock->expects($this->any())->method('getParam')->willReturnMap(
             [
-                ['type', null, TemplateTypesInterface::TYPE_TEXT],
+                ['type', null, Queue::TYPE_TEXT],
                 ['text', null, 'Processed Template'],
                 ['styles', null, '.class-name{color:red;}']
             ]
         );
 
-        $this->templateMock->expects($this->once())->method('setTemplateType')->with(TemplateTypesInterface::TYPE_TEXT)
+        $this->templateMock->expects($this->once())->method('setTemplateType')->with(Queue::TYPE_TEXT)
             ->willReturnSelf();
         $this->templateMock->expects($this->once())->method('setTemplateText')->with('Processed Template')
             ->willReturnSelf();

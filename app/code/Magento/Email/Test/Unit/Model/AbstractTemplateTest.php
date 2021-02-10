@@ -18,7 +18,6 @@ use Magento\Email\Model\Template\FilterFactory;
 use Magento\Email\Model\TemplateFactory;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Filesystem;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Framework\View\Asset\Repository;
@@ -199,7 +198,7 @@ class AbstractTemplateTest extends TestCase
             ->with(false)->willReturnSelf();
         $filterTemplate->expects($this->once())
             ->method('setPlainTemplateMode')
-            ->with($templateType === TemplateTypesInterface::TYPE_TEXT)->willReturnSelf();
+            ->with($templateType === AbstractTemplate::TYPE_TEXT)->willReturnSelf();
         $filterTemplate->expects($this->once())
             ->method('setIsChildTemplate')->willReturnSelf();
         $filterTemplate->expects($this->once())
@@ -242,7 +241,7 @@ class AbstractTemplateTest extends TestCase
 
         $model->expects($this->atLeastOnce())
             ->method('isPlain')
-            ->willReturn($templateType === TemplateTypesInterface::TYPE_TEXT);
+            ->willReturn($templateType === AbstractTemplate::TYPE_TEXT);
 
         $preparedTemplateText = $expectedResult; //'prepared text';
         $model->expects($this->once())
@@ -311,7 +310,7 @@ class AbstractTemplateTest extends TestCase
             ->method('getDesignParams')
             ->willReturn($designParams);
         $model->setTemplateFilter($filterTemplate);
-        $model->setTemplateType(TemplateTypesInterface::TYPE_TEXT);
+        $model->setTemplateType(AbstractTemplate::TYPE_TEXT);
         $model->setTemplateId('abc');
 
         $filterTemplate->expects($this->once())
@@ -328,7 +327,7 @@ class AbstractTemplateTest extends TestCase
         return [
             'default' => [
                 'variables' => [],
-                'templateType' => TemplateTypesInterface::TYPE_TEXT,
+                'templateType' => AbstractTemplate::TYPE_TEXT,
                 'storeId' => 1,
                 'expectedVariables' => [
                     'logo_url' => null,
@@ -347,7 +346,7 @@ class AbstractTemplateTest extends TestCase
                     'logo_url' => 'http://example.com/logo',
                     'logo_alt' => 'Logo Alt',
                 ],
-                'templateType' => TemplateTypesInterface::TYPE_HTML,
+                'templateType' => AbstractTemplate::TYPE_HTML,
                 'storeId' => 1,
                 'expectedVariables' => [
                     'logo_url' => 'http://example.com/logo',

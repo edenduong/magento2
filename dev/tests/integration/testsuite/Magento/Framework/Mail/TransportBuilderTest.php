@@ -9,7 +9,6 @@ namespace Magento\Framework\Mail;
 
 use Magento\Email\Model\BackendTemplate;
 use Magento\Email\Model\Template;
-use Magento\Framework\App\TemplateTypesInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\ObjectManagerInterface;
@@ -57,11 +56,11 @@ class TransportBuilderTest extends TestCase
         $templateId = $template->getId();
 
         switch ($template->getType()) {
-            case TemplateTypesInterface::TYPE_TEXT:
+            case Template::TYPE_TEXT:
                 $templateType = MimeInterface::TYPE_TEXT;
                 break;
 
-            case TemplateTypesInterface::TYPE_HTML:
+            case Template::TYPE_HTML:
                 $templateType = MimeInterface::TYPE_HTML;
                 break;
 
@@ -133,11 +132,11 @@ class TransportBuilderTest extends TestCase
         $templateId = $template->getId();
 
         switch ($template->getType()) {
-            case TemplateTypesInterface::TYPE_TEXT:
+            case Template::TYPE_TEXT:
                 $templateType = MimeInterface::TYPE_TEXT;
                 break;
 
-            case TemplateTypesInterface::TYPE_HTML:
+            case Template::TYPE_HTML:
                 $templateType = MimeInterface::TYPE_HTML;
                 break;
 
